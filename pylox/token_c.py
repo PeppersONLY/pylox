@@ -1,7 +1,7 @@
 from token_type import TokenType
 from typing import Any
 
-class Token():
+class Token:
 
     def __init__(self, type: TokenType, lexeme: str, literal: Any, line: int):
         self.type: TokenType = type

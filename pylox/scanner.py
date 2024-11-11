@@ -1,12 +1,12 @@
 from token_c import Token
 from typing import Any
 from token_type import TokenType
-from lox import Lox
+import lox
 
-class Scanner():
+class Scanner:
 
-    def __init__(self, source: str, lox_interp: Lox):
-        self.lox_interp: Lox = lox_interp
+    def __init__(self, source: str, lox_interp: lox.Lox):
+        self.lox_interp: lox.Lox = lox_interp
         self.source: str = source
         self.tokens: list[Token] = []
         self.start: int = 0
@@ -117,7 +117,7 @@ class Scanner():
                 elif self.is_alpha(c):
                     self.identifier()
                 else:
-                    self.lox_interp.error(self.lox_interp, self.line, "Unexpected character.")
+                    self.lox_interp.error(self.line, "Unexpected character.")
     
     def identifier(self):
         while self.is_alpha_numeric(self.peek()):

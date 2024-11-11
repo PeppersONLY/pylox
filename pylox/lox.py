@@ -1,19 +1,19 @@
 import sys
-from scanner import Scanner
+import scanner
 from token_c import Token
 
-class Lox():
+class Lox:
     
     def __init__(self):
         self.had_error: bool = False
 
         args: list = sys.argv
 
-        if len(args) > 1:
+        if len(args) > 2:
             print("Usage: pylox [script]")
             exit()
-        elif len(args) == 1:
-            self.run_file(args[0])
+        elif len(args) == 2:
+            self.run_file(args[1])
 
     def run_file(self, path: str):
         with open(path) as f:
@@ -21,13 +21,12 @@ class Lox():
         self.run(source)
         if self.had_error: exit(65)
     
-    @staticmethod
-    def run(source: str):
-        scanner: Scanner = Scanner(source)
-        tokens: list[Token] = scanner.scan_tokens()
+    def run(self, source: str):
+        scanner_inst: scanner.Scanner = scanner.Scanner(source, self)
+        tokens: list[Token] = scanner_inst.scan_tokens()
 
         for token in tokens:
-            print(token)
+            print(token, token.lexeme)
     
     def error(self, line: int, message: str):
         self.report(line, "", message)
