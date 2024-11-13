@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from token_c import Token
+from pylox.lox_token import Token
 from typing import Any
 
 class Expr(ABC):
@@ -51,4 +51,3 @@ class Visitor(ABC):
     @abstractmethod
     def visit_unary_expr(self, expr: Unary):
         pass
-

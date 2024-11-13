@@ -1,4 +1,4 @@
-from token_c import Token
+from pylox.lox_token import Token
 from typing import Any
 from token_type import TokenType
 import lox
